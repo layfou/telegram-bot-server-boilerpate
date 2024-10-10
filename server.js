@@ -4,13 +4,18 @@ import dotenv from "dotenv";
 import {setWebhook, URI, TELEGRAM_API} from "./telegram.js"
 
 dotenv.config()
-const {PORT} = process.env;
+const {PORT, SERVER_URL, TOKEN} = process.env;
 
 const app = express();
 app.use(express.json());
 
 app.get('/', (req, res) => {
-  res.send('hello, get!!!')
+  const response = {
+    "port": PORT,
+    "server": SERVER_URL
+  }
+  
+  res.send(response)
 })
 
 app.post('/', (req, res) => {
